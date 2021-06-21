@@ -29,6 +29,9 @@ function App() {
       ...values,
       lastName: event.target.value,
     }));
+    if(error) {
+      setError(false)
+    }
   }
 
   const handleEmailChange = event => {
@@ -36,12 +39,18 @@ function App() {
       ...values,
       email: event.target.value,
     }));
+    if(error) {
+      setError(false)
+    }
   }
   const handlePasswordChange = event => {
     setValues((values) => ({
       ...values,
       password: event.target.value,
     }));
+    if(error) {
+      setError(false)
+    }
   }
 
   const onSubmit = e => {
