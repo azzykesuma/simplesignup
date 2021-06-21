@@ -5,10 +5,12 @@
 
 body {
   font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
 }
 
 .attribution {
   text-align: center;
+  padding-inline : 4em;
 }
 
 section {
@@ -108,4 +110,85 @@ form > p {
   margin-top : 1em;
   margin-left : 1em;
   color : hsl(154, 59%, 51%);
+}
+.inputContainer {
+  display : flex;
+  flex-direction: column;
+}
+.errorMsg {
+  font-style: italic;
+  color: red;
+  text-align: right;
+  margin-right: 1em;
+  position: relative;
+  bottom : 10px;
+}
+
+.iconError {
+  display: flex;
+  position: relative;
+  left : 420px;
+  bottom : 75px;
+  width : 50px; 
+}
+
+@media screen and (min-width : 1320px) {
+  body {
+    background-image: url('./images/bg-intro-desktop.png');
+    background-color: hsl(0, 100%, 74%);
+  }
+  section {
+    height : 100vh;
+  }
+  .MainContainer {
+    padding-top: 1em;
+    padding-left : 6em;
+    display : flex;
+    flex-direction: row;
+  }
+  .header {
+    margin-left : 4em;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    width : 25em;
+    justify-content: center;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  h1,p {
+    text-align: left;
+  }
+  .middleContainer {
+    width : 500px;
+    margin-top : 5em;
+  }
+  .card {
+    width : 100%;
+  }
+  .formContainer {
+    width : 100%;
+    justify-content: center;
+  }
+  form {
+    margin-top : 1.5em;
+  }
+  input {
+    width : 400px;
+    margin-left : 1.8em;
+  }
+  button {
+    width : 445px;
+    margin-left : 1.8em;
+  }
+  form > p {
+    text-align: center;
+  }
+  .card > p {
+    text-align: center;
+  }
+  .success {
+    text-align: center;
+  }
 }

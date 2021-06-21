@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import './App.css';
+import errorImg from './images/icon-error.svg'
 
 function App() {
   const [values,setValues] = useState({
@@ -9,6 +10,7 @@ function App() {
     password : ''
   })
   const [submit,setSubmit] = useState(false)
+  const [error,setError] = useState(false)
 
   // there has to be a better way to update state without making different function for each
   // form field
@@ -17,6 +19,9 @@ function App() {
       ...values,
       firstName: event.target.value,
     }));
+    if(error) {
+      setError(false)
+    }
   }
 
   const handleLnameChange = event => {
@@ -41,7 +46,12 @@ function App() {
 
   const onSubmit = e => {
     e.preventDefault()
-    setSubmit(true)
+    if(values.firstName === '' || values.lastName === '' || values.password === '') {
+      setError(true)
+    } else {
+      setSubmit(true)
+    }
+    
   }
   
 
@@ -61,22 +71,54 @@ function App() {
           <div className='formContainer'>
             <form onSubmit={onSubmit}>
             {submit && <div className='success'>Registration success! check your email</div>}
-              <input type='text' name='Fname' value={values.firstName} onChange={handleFnameChange} placeholder='First Name'/>
-              <input type='text' name='Lname' value={values.lastName} onChange={handleLnameChange} placeholder='Last Name'/>
-              <input type='email' name='email' value={values.email} onChange={handleEmailChange} placeholder='Email Adress'/>
-              <input type='password' name='password' value={values.password} onChange={handlePasswordChange} placeholder='Password'/>
+              <div className='inputContainer'>
+                <input type='text' name='Fname' 
+                value={values.firstName} 
+                onChange={handleFnameChange} 
+                placeholder='First Name'
+                />
+                {error ? <p className='errorMsg'>First Name cannot be empty</p> : null}
+                <span className='iconError'>{error ? <img src={errorImg} alt='error' /> : null}</span>
+              </div>
+              <div>
+                <input type='text' name='Lname' 
+                value={values.lastName} 
+                onChange={handleLnameChange} 
+                placeholder='Last Name'
+                />
+                {error ? <p className='errorMsg'>Last Name cannot be empty</p> : null}
+                <span className='iconError'>{error ? <img src={errorImg} alt='error' /> : null}</span>
+              </div>
+              <div>
+                <input type='email' name='email' 
+                value={values.email} 
+                onChange={handleEmailChange} 
+                placeholder='Email Adress'
+                />
+                {error ? <p className='errorMsg'>Email cannot be empty</p> : null}
+                <span className='iconError'>{error ? <img src={errorImg} alt='error' /> : null}</span>
+              </div>
+              <div>
+                <input type='password' name='password' 
+                value={values.password} 
+                onChange={handlePasswordChange} 
+                placeholder='Password'
+                />
+                {error ? <p className='errorMsg'>Password cannot be empty</p> : null}
+                <span className='iconError'>{error ? <img src={errorImg} alt='error' /> : null}</span>
+              </div>
               <button type='submit'>CLAIM YOUR FREE TRIAL</button>
               <p>By clicking the button, you are agreeing to our <span style={{color : 'hsl(154, 59%, 51%)'}}>Terms and Services</span></p>
             </form>
           </div>
-        </div>       
-        </div>
+        </div>     
+      </div>
       <footer>
-        <p className="attribution">
-          Challenge by <a href="https://www.frontendmentor.io?ref=challenge" rel='noreferrer' target="_blank">Frontend Mentor</a>. 
-          Coded by <a href="https://www.frontendmentor.io/profile/azzykesuma">Azzy</a>.
-        </p>
-      </footer>
+          <p className="attribution">
+            Challenge by <a href="https://www.frontendmentor.io?ref=challenge" rel='noreferrer' target="_blank">Frontend Mentor</a>. 
+            Coded by <a href="https://www.frontendmentor.io/profile/azzykesuma">Azzy</a>.
+          </p>
+      </footer>  
     </section>
   );
 }
